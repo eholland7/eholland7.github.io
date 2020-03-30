@@ -1,16 +1,12 @@
 ---
 layout: page
 title: About me
-subtitle: Why you'd want to go on a date with me
+subtitle: a brief intro to me
 ---
 
-My name is Inigo Montoya. I have the following qualities:
+My name is Elise Holland. I'm interested in data visualization and analytics, supply chain, forecasting, ML, and so much more! I'm an avid reader, adventurer, and baker looking to pursue anything that combines my passions for cultures, philanthropy, and people!
 
-- I rock a great mustache
-- I'm extremely loyal to my family
 
-What else do you need?
+### Education
 
-### my history
-
-To be honest, I'm having some trouble remembering right now, so why don't you just watch [my movie](http://en.wikipedia.org/wiki/The_Princess_Bride_%28film%29) and it will answer **all** your questions.
+- Georgia Institute of Technology
