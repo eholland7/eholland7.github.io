@@ -108,7 +108,7 @@ var covid_deaths = d3.map();
 var regionMap = d3.map();
 var countyMap = d3.map();
 var parseTime = d3.timeParse("%Y-%m-%d");
-var projection = d3.geoAlbersUsa().scale(1000).translate([0, 305])
+var projection = d3.geoAlbersUsa().scale(1000).translate([390, 305])
 var path = d3.geoPath().projection(projection);
 var dates = [];
 
