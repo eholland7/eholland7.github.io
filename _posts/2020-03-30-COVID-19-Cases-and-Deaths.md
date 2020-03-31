@@ -11,7 +11,7 @@ tags: [COVID-19,D3,JavaScipt]
 - Move your cursor over the map to view more detail on the exact number of cases and deaths<br/>
 
 
-Data was obtained from the NYT's github, linked [here](https://github.com/nytimes/covid-19-data)/
+Data was obtained from the NYT's github, linked [here](https://github.com/nytimes/covid-19-data)
 
 <meta charset="utf-8">
 <style>
