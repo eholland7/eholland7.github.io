@@ -75,8 +75,8 @@ tags: [COVID-19,d3,JavaScipt]
 
 .col-md-6 {
   position: absolute;
-  top: 68%;
-  left: 73%;
+  top: 0%;
+  left: 0%;
   transform: translate(-50%, -50%);
  }
 
