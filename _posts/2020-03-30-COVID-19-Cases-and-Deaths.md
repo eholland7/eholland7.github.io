@@ -78,6 +78,7 @@ tags: [COVID-19,d3,JavaScipt]
 </style>
 
 <div class="row">
+  <div class="col-md-6" id="titlearea">
   <div class="col-md-6" id="chartarea">
     <div class="btn-holder1">
       <div id="buttons">
