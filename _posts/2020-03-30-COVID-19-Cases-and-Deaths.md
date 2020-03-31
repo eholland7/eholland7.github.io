@@ -328,8 +328,8 @@ function updateData(newDate) {
   covid_deaths.clear();
 
   var promises = [
-    d3.json("./counties-albers-10m.json"),
-    d3.csv("./data/covid-counties.csv", function(data) {
+    d3.json("../counties-albers-10m.json"),
+    d3.csv("../data/covid-counties.csv", function(data) {
       if (parseTime(data.date) <= newDate) {
         dates.push(parseTime(data.date));
         covid_cases.set(data.fips, +data.cases);
@@ -337,7 +337,7 @@ function updateData(newDate) {
         countyMap.set(data.fips, data.county);
       }
     }),
-    d3.csv("./data/state_county_map.csv", function(d) {
+    d3.csv("../data/state_county_map.csv", function(d) {
       regionMap.set(+d.fips, d.state);
     })
   ]
