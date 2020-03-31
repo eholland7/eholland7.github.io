@@ -73,12 +73,7 @@ tags: [COVID-19,d3,JavaScipt]
   transform: translate(-50%, -50%);
 }
 
-.col-md-6 {
-  position: absolute;
-  top: 35%;
-  left: 20%;
-  transform: translate(-50%, -50%);
- }
+
 
 </style>
 
