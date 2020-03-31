@@ -9,7 +9,9 @@ tags: [COVID-19,D3,JavaScipt]
 - Use the slider below to display deaths and cases for a date between January 21st and March 29th
 - Toggle the buttons to display and hide the number of cases
 - Move your cursor over the map to view more detail on the exact number of cases and deaths<br/>
-Data was obtained from the NYT's github, linked [here](https://github.com/nytimes/covid-19-data)<br/>
+
+
+Data was obtained from the NYT's github, linked [here](https://github.com/nytimes/covid-19-data)/
 
 <meta charset="utf-8">
 <style>
