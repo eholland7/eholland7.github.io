@@ -5,7 +5,7 @@ subtitle: An exploration into how a pandemic visually develops
 gh-repo: eholland7/covid-19-viz
 gh-badge: [star, fork, follow]
 tags: [covid-19],[d3],[JavaScript]
-comments: false
+comments: true
 ---
 
 You can write regular [markdown](http://markdowntutorial.com/) here and Jekyll will automatically convert it to a nice webpage.  I strongly encourage you to [take 5 minutes to learn how to write in markdown](http://markdowntutorial.com/) - it'll teach you how to transform regular text into bold/italics/headings/tables/etc.
