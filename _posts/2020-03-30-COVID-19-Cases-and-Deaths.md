@@ -4,7 +4,7 @@ title: COVID-19 Cases and Deaths
 subtitle: An exploration into how a pandemic visually develops
 tags: [COVID-19,d3,JavaScipt]
 ---
-I've used d3.select to target an element `<div id="example">` in this document:
+
 <style>
 
 .counties {
@@ -99,7 +99,7 @@ I've used d3.select to target an element `<div id="example">` in this document:
 <script>
 
 //create chart
-var svg = d3.select("#container").append("svg")
+var svg = d3.select("#chartarea").append("svg")
     .attr("width", 1000)
     .attr("height", 600);
 
@@ -108,7 +108,7 @@ var covid_deaths = d3.map();
 var regionMap = d3.map();
 var countyMap = d3.map();
 var parseTime = d3.timeParse("%Y-%m-%d");
-var projection = d3.geoAlbersUsa().scale(1000).translate([390, 305])
+var projection = d3.geoAlbersUsa().scale(1000).translate([0, 305])
 var path = d3.geoPath().projection(projection);
 var dates = [];
 
@@ -422,4 +422,3 @@ function ready([us]) {
       .on("mouseout", handleMouseOut);
 }
 </script>
-<div id="example"></div>
