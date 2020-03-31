@@ -4,7 +4,7 @@ title: COVID-19 Cases and Deaths
 subtitle: An exploration into how a pandemic visually develops
 gh-repo: daattali/beautiful-jekyll
 gh-badge: [star, fork, follow]
-tags: [test]
+tags: [COVID-19,d3,JavaScipt]
 comments: true
 ---
 
