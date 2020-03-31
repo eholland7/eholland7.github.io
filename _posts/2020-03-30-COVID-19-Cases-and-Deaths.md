@@ -81,11 +81,11 @@ I've used d3.select to target an element `<div id="example">` in this document:
   </div>
 </div>
 
-<script src="./lib/d3.v5.min.js"></script>
-<script src="./lib/d3-scale-chromatic.v1.min.js"></script>
-<script src="./lib/topojson.v2.min.js"></script>
-<script src="./lib/d3-simple-slider.min.js"></script>
-<script src="./lib/d3-tip.min.js"></script>
+<script src="../lib/d3.v5.min.js"></script>
+<script src="../lib/d3-scale-chromatic.v1.min.js"></script>
+<script src="../lib/topojson.v2.min.js"></script>
+<script src="../lib/d3-simple-slider.min.js"></script>
+<script src="../lib/d3-tip.min.js"></script>
 <script>
 
 //title and info
@@ -328,7 +328,7 @@ function updateData(newDate) {
   covid_deaths.clear();
 
   var promises = [
-    d3.json("counties-albers-10m.json"),
+    d3.json("./counties-albers-10m.json"),
     d3.csv("./data/covid-counties.csv", function(data) {
       if (parseTime(data.date) <= newDate) {
         dates.push(parseTime(data.date));
