@@ -1,7 +1,7 @@
 ---
 layout: post
 title: COVID-19 Cases and Deaths
-subtitle: Each post also has a subtitle
+subtitle: An exploration into how a pandemic visually develops
 gh-repo: daattali/beautiful-jekyll
 gh-badge: [star, fork, follow]
 tags: [test]
