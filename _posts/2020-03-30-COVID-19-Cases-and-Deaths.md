@@ -62,17 +62,16 @@ tags: [COVID-19,d3,JavaScipt]
 .btn-holder1 {
   position: absolute;
   top: 63%;
-  left: 73%;
+  left: 93%;
   transform: translate(-50%, -50%);
 }
 
 .btn-holder2 {
   position: absolute;
   top: 68%;
-  left: 73%;
+  left: 93%;
   transform: translate(-50%, -50%);
 }
-
 
 
 </style>
