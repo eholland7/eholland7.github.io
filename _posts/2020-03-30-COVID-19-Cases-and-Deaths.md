@@ -5,7 +5,6 @@ subtitle: An exploration into how a pandemic visually develops
 tags: [COVID-19,d3,JavaScipt]
 ---
 I've used d3.select to target an element `<div id="example">` in this document:
-
 <style>
 
 .counties {
@@ -60,10 +59,17 @@ I've used d3.select to target an element `<div id="example">` in this document:
   color: dimgray;
 }
 
-.btn-holder {
+.btn-holder1 {
   position: absolute;
-  top: 55%;
-  left: 90%;
+  top: 63%;
+  left: 73%;
+  transform: translate(-50%, -50%);
+}
+
+.btn-holder2 {
+  position: absolute;
+  top: 68%;
+  left: 73%;
   transform: translate(-50%, -50%);
 }
 
@@ -72,12 +78,16 @@ I've used d3.select to target an element `<div id="example">` in this document:
 <div class="row">
   <div class="col-md-6" id="titlearea"></div>
   <div class="col-md-6" id="chartarea">
-    <div class="btn-holder">
+    <div class="btn-holder1">
       <div id="buttons">
           <button id="bubblesOn">Display Cases</button>
-          <button id="bubblesOff">Hide Cases</button>
       </div>
    </div>
+   <div class="btn-holder2">
+     <div id="buttons">
+         <button id="bubblesOff">Hide Cases</button>
+     </div>
+  </div>
   </div>
 </div>
 
@@ -89,35 +99,35 @@ I've used d3.select to target an element `<div id="example">` in this document:
 <script>
 
 //title and info
-/*var svg_title = d3.select("#titlearea").append("svg")
-    .attr("width", 960)
-    .attr("height", 75);
-
-svg_title.append("text")
-    .attr("text-anchor", "middle")
-    .attr("y", 55)
-    .attr("x", 375)
-    .attr("class", "title-text")
-    .text("COVID-19 Cases & Deaths by County");*/
+// var svg_title = d3.select("#titlearea").append("svg")
+//     .attr("width", 960)
+//     .attr("height", 75);
+//
+// svg_title.append("text")
+//     .attr("text-anchor", "middle")
+//     .attr("y", 55)
+//     .attr("x", 375)
+//     .attr("class", "title-text")
+//     .text("COVID-19 Cases & Deaths by County");
 
 //create chart
 var svg = d3.select("#chartarea").append("svg")
-    .attr("width", 1230)
-    .attr("height", 800);
+    .attr("width", 1000)
+    .attr("height", 600);
 
 var covid_cases = d3.map();
 var covid_deaths = d3.map();
 var regionMap = d3.map();
 var countyMap = d3.map();
 var parseTime = d3.timeParse("%Y-%m-%d");
-var projection = d3.geoAlbersUsa().scale(1000).translate([487.5, 305])
+var projection = d3.geoAlbersUsa().scale(1000).translate([390, 305])
 var path = d3.geoPath().projection(projection);
 var dates = [];
 
 //legend -- for deaths
 var x = d3.scaleLinear()
     .domain([1, 50])
-    .rangeRound([600, 1020]);
+    .rangeRound([325, 825]);
 
 var rangeGreys = ["#ffffff","#f0f0f0","#eaeaea","#d9d9d9","#c5c5c5","#bdbdbd", "#a9a9a9"
       ,"#a0a0a0","#969696","#888888","#828282","#737373","#646464","#525252","#3e3e3e"
@@ -129,7 +139,7 @@ var color = d3.scaleThreshold()
 
 var g = svg.append("g")
     .attr("class", "key")
-    .attr("transform", "translate(-150,30)");
+    .attr("transform", "translate(-150,45)");
 
 g.selectAll("rect")
   .data(color.range().map(function(d) {
@@ -146,7 +156,7 @@ g.selectAll("rect")
 
 g.append("text")
     .attr("class", "caption")
-    .attr("x", x.range()[0] + 150)
+    .attr("x", x.range()[0] + 175)
     .attr("y", -6)
     .attr("fill", "#000")
     .attr("text-anchor", "start")
@@ -166,31 +176,31 @@ var bubbles_legend = svg.selectAll(".bubbles-legend")
     .enter().append("circle")
     .attr("class", "bubbles-legend")
     .attr("r", function(d) {
-      return Math.sqrt(d) / (Math.PI / 2.5);
+      return Math.sqrt(d) / (Math.PI / 1.5);
     })
-    .attr("transform", "translate(1140,500)")
-    .attr("cy", d => -(Math.sqrt(d) / (Math.PI / 2.5)));
+    .attr("transform", "translate(930,470)")
+    .attr("cy", d => -(Math.sqrt(d) / (Math.PI/1.5)));
 
 svg.append("text")
-      .attr("transform", "translate(1140,440)")
+      .attr("transform", "translate(930,440)")
       .attr("text-anchor", "middle")
       .style("font", "10px sans-serif")
       .attr("fill", "#900")
       .text("2k");
 svg.append("text")
-      .attr("transform", "translate(1140,410)")
+      .attr("transform", "translate(930,420)")
       .attr("text-anchor", "middle")
       .style("font", "10px sans-serif")
       .attr("fill", "#900")
       .text("4k");
 svg.append("text")
-      .attr("transform", "translate(1140,368)")
+      .attr("transform", "translate(930,395)")
       .attr("text-anchor", "middle")
       .style("font", "10px sans-serif")
       .attr("fill", "#900")
       .text("8k");
 svg.append("text")
-      .attr("transform", "translate(1140,520)")
+      .attr("transform", "translate(930,490)")
       .attr("text-anchor", "middle")
       .style("font", "10px sans-serif")
       .text("Cases of COVID-19");
@@ -242,7 +252,7 @@ var dispatch = d3.dispatch("input", "statechange");
 var slider = d3.sliderRight()
     .min(parseTime("2020-01-21"))
     .max(parseTime("2020-03-28"))
-    .height(400)
+    .height(350)
     .tickFormat(d3.timeFormat("%m-%d"))
     .tickValues(dates.forEach(element => parseTime(element)))
     .default(parseTime("2020-03-28"))
@@ -260,7 +270,7 @@ var slider = d3.sliderRight()
           } else {
               d.value = d.initCovid;
           }
-          return Math.sqrt(d.value) / (Math.PI/2.5);
+          return Math.sqrt(d.value) / (Math.PI/1.5);
         })
         .attr("cx", function(d) { return path.centroid(d)[0] })
         .attr("cy", function(d) { return path.centroid(d)[1] })
@@ -269,45 +279,51 @@ var slider = d3.sliderRight()
 
 svg.append("g")
     .call(slider)
-    .attr("transform", "translate(970,132)");
+    .attr("transform", "translate(770,160)");
 
 svg.append("text")
     .attr("text-anchor", "start")
-    .attr("y", 155)
-    .attr("x", 1055)
+    .attr("y", 170)
+    .attr("x", 850)
     .attr("class", "subtitle-text")
     .text("Date Selection Info:");
 
 svg.append("text")
     .attr("text-anchor", "start")
-    .attr("y", 185)
-    .attr("x", 1055)
+    .attr("y", 200)
+    .attr("x", 850)
     .attr("class", "avg-text")
     .text("Use the slider on the left to");
 svg.append("text")
     .attr("text-anchor", "start")
-    .attr("y", 200)
-    .attr("x", 1055)
-    .attr("class", "avg-text")
-    .text("display deaths and cases for a");
-svg.append("text")
-    .attr("text-anchor", "start")
     .attr("y", 215)
-    .attr("x", 1055)
+    .attr("x", 850)
     .attr("class", "avg-text")
-    .text("date between January 21st and");
+    .text("display deaths and cases ");
 svg.append("text")
     .attr("text-anchor", "start")
     .attr("y", 230)
-    .attr("x", 1055)
+    .attr("x", 850)
     .attr("class", "avg-text")
-    .text("March 25th. Toggle the buttons");
+    .text("for a date between January");
 svg.append("text")
     .attr("text-anchor", "start")
     .attr("y", 245)
-    .attr("x", 1055)
+    .attr("x", 850)
     .attr("class", "avg-text")
-    .text("below to get rid of the bubbles.");
+    .text("21st and March 25th. ");
+svg.append("text")
+    .attr("text-anchor", "start")
+    .attr("y", 265)
+    .attr("x", 850)
+    .attr("class", "avg-text")
+    .text("Toggle the buttons below to ");
+svg.append("text")
+    .attr("text-anchor", "start")
+    .attr("y", 280)
+    .attr("x", 850)
+    .attr("class", "avg-text")
+    .text("get rid of the bubbles.");
 
 //button details
 d3.selectAll("button")
@@ -317,10 +333,11 @@ d3.selectAll("button")
         .transition()
         .duration(500)
         .attr("r", function(d) {
-          return (bubbleType == "bubblesOff" ? 0 : Math.sqrt(covid_cases.get(d.id)) / (Math.PI / 2.5));
+          return (bubbleType == "bubblesOff" ? 0 : Math.sqrt(covid_cases.get(d.id)) / (Math.PI/1.5));
         })
   });
 
+/*****************************************************************************/
 
 //get data
 function updateData(newDate) {
@@ -408,7 +425,7 @@ function ready([us]) {
           } else {
               d.value = d.initCovid;
           }
-          return Math.sqrt(d.value) / (Math.PI / 2.5);
+          return Math.sqrt(d.value) / (Math.PI/1.5);
       })
       .attr("cx", function(d) { return path.centroid(d)[0] })
       .attr("cy", function(d) { return path.centroid(d)[1] })
