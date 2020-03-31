@@ -110,7 +110,8 @@ var covid_deaths = d3.map();
 var regionMap = d3.map();
 var countyMap = d3.map();
 var parseTime = d3.timeParse("%Y-%m-%d");
-var path = d3.geoPath();
+var projection = d3.geoAlbersUsa().scale(1000).translate([487.5, 305])
+var path = d3.geoPath().projection(projection);
 var dates = [];
 
 //legend -- for deaths
@@ -328,7 +329,7 @@ function updateData(newDate) {
   covid_deaths.clear();
 
   var promises = [
-    d3.json("../counties-albers-10m.json"),
+    d3.json("../counties-10m.json"),
     d3.csv("../data/covid-counties.csv", function(data) {
       if (parseTime(data.date) <= newDate) {
         dates.push(parseTime(data.date));
