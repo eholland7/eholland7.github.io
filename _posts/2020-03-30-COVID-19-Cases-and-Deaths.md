@@ -169,11 +169,11 @@ g.call(d3.axisLeft(x)
 
 //legend -- for cases
 var bubbles_legend = svg.selectAll(".bubbles-legend")
-    .data([2000, 4000, 8000])
+    .data([2000, 5000, 10000])
     .enter().append("circle")
     .attr("class", "bubbles-legend")
     .attr("r", function(d) {
-      return Math.sqrt(d) / (Math.PI / 1.5);
+      return Math.sqrt(d) / (Math.PI/1.5);
     })
     .attr("transform", "translate(800,470)")
     .attr("cy", d => -(Math.sqrt(d) / (Math.PI/1.5)));
@@ -185,17 +185,17 @@ svg.append("text")
       .attr("fill", "#900")
       .text("2k");
 svg.append("text")
-      .attr("transform", "translate(800,420)")
+      .attr("transform", "translate(800,415)")
       .attr("text-anchor", "middle")
       .style("font", "10px sans-serif")
       .attr("fill", "#900")
-      .text("4k");
+      .text("5k");
 svg.append("text")
-      .attr("transform", "translate(800,395)")
+      .attr("transform", "translate(800,385)")
       .attr("text-anchor", "middle")
       .style("font", "10px sans-serif")
       .attr("fill", "#900")
-      .text("8k");
+      .text("10k");
 svg.append("text")
       .attr("transform", "translate(800,490)")
       .attr("text-anchor", "middle")
