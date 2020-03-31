@@ -4,6 +4,12 @@ title: COVID-19 Cases and Deaths
 subtitle: An exploration into how a pandemic visually develops
 tags: [COVID-19,d3,JavaScipt]
 ---
+
+
+Use the slider below to display deaths and cases for a date between January 21st and March 28th. 
+Toggle the buttons to display and hide the number of cases.
+
+
 <meta charset="utf-8">
 <style>
 
@@ -242,6 +248,12 @@ var slider = d3.sliderBottom()
     .tickFormat(d3.timeFormat("%m-%d"))
     .tickValues(dates.forEach(element => parseTime(element)))
     .default(parseTime("2020-03-28"))
+    .handle(
+      d3
+        .symbol()
+        .type(d3.symbolCircle)
+        .size(200)()
+    )
     .on("end", function(value) {
 
       updateData(value);
@@ -265,7 +277,7 @@ var slider = d3.sliderBottom()
 
 svg.append("g")
     .call(slider)
-    .attr("transform", "translate(220,5)");//"translate(770,160)");
+    .attr("transform", "translate(220,8)");
 
 // svg.append("text")
 //     .attr("text-anchor", "start")
