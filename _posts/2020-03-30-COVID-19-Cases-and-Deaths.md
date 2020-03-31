@@ -2,14 +2,14 @@
 layout: post
 title: COVID-19 Cases and Deaths
 subtitle: An exploration into how a pandemic visually develops
-tags: [COVID-19,d3,JavaScipt]
+tags: [COVID-19,D3,JavaScipt]
 ---
 
 
 - Use the slider below to display deaths and cases for a date between January 21st and March 28th
 - Toggle the buttons to display and hide the number of cases
 - Move your cursor over the map to view more detail on the exact number of cases and deaths
-
+<br/>
 
 <meta charset="utf-8">
 <style>
@@ -280,50 +280,6 @@ svg.append("g")
     .call(slider)
     .attr("transform", "translate(220,8)");
 
-// svg.append("text")
-//     .attr("text-anchor", "start")
-//     .attr("y", 170)
-//     .attr("x", 850)
-//     .attr("class", "subtitle-text")
-//     .text("Date Selection Info:");
-//
-// svg.append("text")
-//     .attr("text-anchor", "start")
-//     .attr("y", 200)
-//     .attr("x", 850)
-//     .attr("class", "avg-text")
-//     .text("Use the slider on the left to");
-// svg.append("text")
-//     .attr("text-anchor", "start")
-//     .attr("y", 215)
-//     .attr("x", 850)
-//     .attr("class", "avg-text")
-//     .text("display deaths and cases ");
-// svg.append("text")
-//     .attr("text-anchor", "start")
-//     .attr("y", 230)
-//     .attr("x", 850)
-//     .attr("class", "avg-text")
-//     .text("for a date between January");
-// svg.append("text")
-//     .attr("text-anchor", "start")
-//     .attr("y", 245)
-//     .attr("x", 850)
-//     .attr("class", "avg-text")
-//     .text("21st and March 25th. ");
-// svg.append("text")
-//     .attr("text-anchor", "start")
-//     .attr("y", 265)
-//     .attr("x", 850)
-//     .attr("class", "avg-text")
-//     .text("Toggle the buttons below to ");
-// svg.append("text")
-//     .attr("text-anchor", "start")
-//     .attr("y", 280)
-//     .attr("x", 850)
-//     .attr("class", "avg-text")
-//     .text("get rid of the bubbles.");
-
 //button details
 d3.selectAll("button")
   .on("click", function() {
@@ -433,3 +389,5 @@ function ready([us]) {
       .on("mouseout", handleMouseOut);
 }
 </script>
+
+Data was obtained from the NYT's github, linked [here](https://github.com/nytimes/covid-19-data)
