@@ -2,7 +2,7 @@
 layout: post
 title: COVID-19 Cases & Deaths around the US
 subtitle: An exploration into how a pandemic visually develops
-gh-repo:daattali/beautiful-jekyll
+gh-repo: daattali/beautiful-jekyll
 gh-badge: [star, fork, follow]
 tags: [covid-19],[d3],[JavaScript]
 comments: true
