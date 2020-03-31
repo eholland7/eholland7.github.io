@@ -98,20 +98,8 @@ I've used d3.select to target an element `<div id="example">` in this document:
 <script src="../lib/d3-tip.min.js"></script>
 <script>
 
-//title and info
-// var svg_title = d3.select("#titlearea").append("svg")
-//     .attr("width", 960)
-//     .attr("height", 75);
-//
-// svg_title.append("text")
-//     .attr("text-anchor", "middle")
-//     .attr("y", 55)
-//     .attr("x", 375)
-//     .attr("class", "title-text")
-//     .text("COVID-19 Cases & Deaths by County");
-
 //create chart
-var svg = d3.select("#chartarea").append("svg")
+var svg = d3.select("#container").append("svg")
     .attr("width", 1000)
     .attr("height", 600);
 
