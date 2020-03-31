@@ -77,8 +77,6 @@ tags: [COVID-19,d3,JavaScipt]
 
 </style>
 
-<div class="row">
-  <div class="col-md-6" id="titlearea">
   <div class="col-md-6" id="chartarea">
     <div class="btn-holder1">
       <div id="buttons">
@@ -89,7 +87,6 @@ tags: [COVID-19,d3,JavaScipt]
      <div id="buttons">
          <button id="bubblesOff">Hide Cases</button>
      </div>
-  </div>
   </div>
 </div>
 
