@@ -1,7 +1,7 @@
 ---
 layout: post
 title: COVID-19 Cases and Deaths
-subtitle: An exploration into how a pandemic visually develops
+subtitle: A visual exploration into how a pandemic develops
 gh-repo: eholland7/covid-19-data
 gh-badge: [star, fork, follow]
 tags: [COVID-19,D3,JavaScipt]
