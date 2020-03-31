@@ -73,10 +73,16 @@ tags: [COVID-19,d3,JavaScipt]
   transform: translate(-50%, -50%);
 }
 
+.col-md-6 {
+  position: absolute;
+  top: 68%;
+  left: 73%;
+  transform: translate(-50%, -50%);
+ }
+
 </style>
 
 <div class="row">
-  <div class="col-md-6" id="titlearea"></div>
   <div class="col-md-6" id="chartarea">
     <div class="btn-holder1">
       <div id="buttons">
