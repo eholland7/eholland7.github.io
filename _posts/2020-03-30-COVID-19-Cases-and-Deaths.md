@@ -116,6 +116,8 @@ var projection = d3.geoAlbersUsa().scale(1000).translate([440, 250])
 var path = d3.geoPath().projection(projection);
 var dates = [];
 var at_date;
+var min_date;
+var max_date;
 
 var stats, counties, datelist, fipslist;
 
@@ -375,7 +377,33 @@ function ready(data) {
       covid_deaths.get(r['date']).set(r['fips'], r['deaths']);
   }
   at_date = datelist[datelist.length - 1]
+  min_date = datelist[0];
+  max_date = datelist[datelist.length - 1];
 
+  //slider to view the data as it happened
+  var dispatch = d3.dispatch("input", "statechange");
+  var slider = d3.sliderBottom()
+      .min(parseTime(min_date))
+      .max(parseTime(max_date))
+      .width(500)
+      .tickFormat(d3.timeFormat("%m-%d"))
+      .tickValues(dates.forEach(element => parseTime(element)))
+      .default(parseTime("2020-04-01"))
+      .handle(
+        d3
+          .symbol()
+          .type(d3.symbolCircle)
+          .size(200)()
+      )
+      .on("end", function(value) {
+        at_date = d3.timeFormat("%Y-%m-%d")(value);
+        redraw();
+      });
+
+  svg.append("g")
+      .call(slider)
+      .attr("transform", "translate(220,8)");//"translate(770,160)");
+      
   init_graph();
   redraw();
 }
