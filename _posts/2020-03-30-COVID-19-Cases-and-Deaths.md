@@ -205,15 +205,23 @@ function strong(text) {
     return "<strong>" + text + "</strong>"
 }
 
+
 var tip = d3.tip()
     .attr("class", "tip")
     .offset([-5, 0])
     .html(function(d) {
-        var county = d.properties.name;
+        var county;
+        if (d.id === '36047') {
+          county = 'New York City';
+        } else if (d.id === "29047") {
+          county = 'Clay / Kansas City';
+        } else if (d.id === '17031') {
+          county = 'Cook / Chicago';
+        } else {
+          county = d.properties.name;
+        }
         var state = regionMap.get(+d.id);
-
         var cases = covid_cases.get(at_date).get(d.id);
-        console.log(cases);
         var deaths = covid_deaths.get(at_date).get(d.id);
         if (cases === undefined) {
              cases = 0;
@@ -328,6 +336,20 @@ function ready(data) {
   counties.map(function (d) {
       regionMap.set(d['fips'], d['state']);
       countyMap.set(d['fips'], d['county']);
+  });
+  
+  stats.forEach(function(item) {
+    if (item['fips'] === "") {
+      //its a random City
+      if (item['county'] === "New York City") {
+        //36047: KINGS COUNTY, FOR NYC
+        item['fips'] = "36047";
+      } else if (item['county'] === "Kansas City") {
+        console.log("HERE");
+        //29047: CLAY COUNTY, MO, FOR KANSAS CITY
+        item['fips'] = "29047";
+      }
+    }
   });
 
   //get list of unique dates and fips
