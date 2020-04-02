@@ -18,8 +18,66 @@ Data was obtained from the NYT's github, linked [here](https://github.com/nytime
 
 <meta charset="utf-8">
 
-<link rel="stylesheet" type="text/css" href="../lib/main.css"></link>
+<style> 
+  .counties {
+  fill: #fff;
+}
 
+.states {
+  fill: none;
+  stroke: #fff;
+  stroke-linejoin: round;
+}
+
+.bubbles {
+  stroke: #000;
+  fill-opacity: .35;
+}
+
+.bubbles-legend {
+  stroke: #900;
+  fill-opacity: 0;
+}
+
+.tip {
+    position: absolute;
+    padding: 5px;
+    font: 12px sans-serif;
+    color: white;
+    background: dimgray;
+    border: 0px;
+    border-radius: 8px;
+    pointer-events: none;
+}
+.label-text {
+    font-size: 25px;
+    font-family: sans-serif;
+}
+
+.title-text {
+  font: 25px sans-serif;
+  font-weight: bold;
+  color: dimgray;
+}
+
+.subtitle-text {
+  font: 15px sans-serif;
+  font-weight: bold;
+  color: dimgray;
+}
+
+.avg-text {
+  font: 12px sans-serif;
+  color: dimgray;
+}
+
+.btn-holder {
+  position: absolute;
+  top: 17%;
+  left: 80%;
+  transform: translate(-50%, -50%);
+}
+</style>
 <div class="col-md-6" id="chartarea">
   <div class="btn-holder1">
     <div id="buttons">
