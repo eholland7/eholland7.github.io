@@ -102,7 +102,7 @@ Data was obtained from the NYT's github, linked [here](https://github.com/nytime
 //create chart
 var svg = d3.select("#chartarea").append("svg")
     .attr("width", 1000)
-    .attr("height", 600);
+    .attr("height", 500);
 
 
 var covid_cases = d3.map();
