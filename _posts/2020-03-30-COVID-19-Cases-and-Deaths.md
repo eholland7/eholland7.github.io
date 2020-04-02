@@ -8,7 +8,7 @@ tags: [COVID-19,D3,JavaScipt]
 ---
 
 
-- Use the slider below to display deaths and cases for a date between January 21st and March 31st.
+- Use the slider below to display deaths and cases for a date beginning January 21st.
 - Toggle the buttons to display and hide the number of cases.
 - Move your cursor over the map to view more detail on the exact number of cases and deaths.<br/>
 
@@ -262,11 +262,11 @@ function handleMouseOutC(d) {
 var dispatch = d3.dispatch("input", "statechange");
 var slider = d3.sliderBottom()
     .min(parseTime("2020-01-21"))
-    .max(parseTime("2020-03-31"))
+    .max(parseTime("2020-04-01"))
     .width(500)
     .tickFormat(d3.timeFormat("%m-%d"))
     .tickValues(dates.forEach(element => parseTime(element)))
-    .default(parseTime("2020-03-31"))
+    .default(parseTime("2020-04-01"))
     .handle(
       d3
         .symbol()
