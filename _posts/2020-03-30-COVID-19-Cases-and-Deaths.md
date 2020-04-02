@@ -31,6 +31,7 @@ Data was obtained from the NYT's github, linked [here](https://github.com/nytime
 
 .bubbles {
   stroke: #000;
+  stroke-width: 0.25;
   fill-opacity: .35;
 }
 
