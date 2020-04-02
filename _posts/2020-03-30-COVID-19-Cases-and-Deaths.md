@@ -78,6 +78,7 @@ Data was obtained from the NYT's github, linked [here](https://github.com/nytime
   transform: translate(-50%, -50%);
 }
 </style>
+
 <div class="col-md-6" id="chartarea">
   <div class="btn-holder1">
     <div id="buttons">
@@ -90,7 +91,6 @@ Data was obtained from the NYT's github, linked [here](https://github.com/nytime
    </div>
 </div>
 </div>
-
 
 <script src="../lib/d3.v5.min.js"></script>
 <script src="../lib/d3-scale-chromatic.v1.min.js"></script>
@@ -114,6 +114,7 @@ var parseTime = d3.timeParse("%Y-%m-%d");
 var projection = d3.geoAlbersUsa().scale(1000).translate([440, 250])
 var path = d3.geoPath().projection(projection);
 var dates = [];
+var at_date;
 
 var stats, counties, datelist, fipslist;
 
@@ -209,8 +210,10 @@ var tip = d3.tip()
     .html(function(d) {
         var county = d.properties.name;
         var state = regionMap.get(+d.id);
-        var cases = covid_cases.get(d.id);
-        var deaths = covid_deaths.get(d.id);
+
+        var cases = covid_cases.get(at_date).get(d.id);
+        console.log(cases);
+        var deaths = covid_deaths.get(at_date).get(d.id);
         if (cases === undefined) {
              cases = 0;
         }
@@ -228,16 +231,32 @@ svg.call(tip);
 function handleMouseOver(d) {
     tip.show(d);
     d3.select(this)
-        .attr("stroke", "white")
+
+        .attr("stroke", "black")
+        .attr("stroke-width", "5")
     };
 function handleMouseOut(d) {
     tip.hide(d);
     d3.select(this)
+        .attr("stroke-width", "0.25")
+        .attr("stroke", "black")
+    };
+
+function handleMouseOverC(d) {
+    tip.show(d);
+    d3.select(this)
+        .attr("stroke-width", "3")
+        .attr("stroke", "white")
+    };
+function handleMouseOutC(d) {
+    tip.hide(d);
+    d3.select(this)
+        .attr("stroke-width", "0.01")
         .attr("stroke", "none")
     };
 
 //slider to view the data as it happened
-var at_date;
+
 
 var dispatch = d3.dispatch("input", "statechange");
 var slider = d3.sliderBottom()
@@ -347,8 +366,8 @@ function init_graph() {
     .enter().append("path")
       .attr("fill", function(d) { return color(0); })
       .attr("d", path)
-      .on("mouseover", handleMouseOver)
-      .on("mouseout", handleMouseOut);
+      .on("mouseover", handleMouseOverC)
+      .on("mouseout", handleMouseOutC);
 
   svg.append("path")
       .datum(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; }))
@@ -385,4 +404,5 @@ function redraw() {
       .transition().duration(2000)
       .attr("r", function(d) { return rad(d.id); });
 }
+
 </script>
