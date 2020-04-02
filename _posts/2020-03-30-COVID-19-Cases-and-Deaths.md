@@ -266,33 +266,6 @@ function handleMouseOutC(d) {
         .attr("stroke", "none")
     };
 
-//slider to view the data as it happened
-
-
-var dispatch = d3.dispatch("input", "statechange");
-var slider = d3.sliderBottom()
-    .min(parseTime("2020-01-21"))
-    .max(parseTime("2020-04-01"))
-    .width(500)
-    .tickFormat(d3.timeFormat("%m-%d"))
-    .tickValues(dates.forEach(element => parseTime(element)))
-    .default(parseTime("2020-04-01"))
-    .handle(
-      d3
-        .symbol()
-        .type(d3.symbolCircle)
-        .size(200)()
-    )
-    .on("end", function(value) {
-      at_date = d3.timeFormat("%Y-%m-%d")(value);
-      redraw();
-    });
-
-svg.append("g")
-    .call(slider)
-    .attr("transform", "translate(220,8)");//"translate(770,160)");
-
-
 function checker(x) {
   return (x === undefined ? 0 : x);
 }
