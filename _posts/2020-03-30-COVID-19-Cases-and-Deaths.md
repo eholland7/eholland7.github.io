@@ -361,7 +361,7 @@ function ready(data) {
       .width(500)
       .tickFormat(d3.timeFormat("%m-%d"))
       .tickValues(dates.forEach(element => parseTime(element)))
-      .default(parseTime(max_date)
+      .default(parseTime(max_date))
       .handle(
         d3
           .symbol()
