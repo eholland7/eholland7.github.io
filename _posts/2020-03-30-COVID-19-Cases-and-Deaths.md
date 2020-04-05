@@ -354,7 +354,6 @@ function ready(data) {
   max_date = datelist[datelist.length - 1];
 
   //slider to view the data as it happened
-  var dispatch = d3.dispatch("input", "statechange");
   var slider = d3.sliderBottom()
       .min(parseTime(min_date))
       .max(parseTime(max_date))
