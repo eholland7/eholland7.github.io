@@ -380,7 +380,6 @@ function ready(data) {
   redraw();
 }
 
-
 function init_graph() {
   svg.append("g")
       .attr("class", "counties")
