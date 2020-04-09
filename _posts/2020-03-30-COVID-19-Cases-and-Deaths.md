@@ -103,7 +103,7 @@ Data was obtained from the NYT's github, linked [here](https://github.com/nytime
 //create chart
 var svg = d3.select("#chartarea").append("svg")
     .attr("width", 1000)
-    .attr("height", 500);
+    .attr("height", 600);
 
 
 var covid_cases = d3.map();
@@ -112,7 +112,7 @@ var regionMap = d3.map();
 var countyMap = d3.map();
 var parseTime = d3.timeParse("%Y-%m-%d");
 
-var projection = d3.geoAlbersUsa().scale(1000).translate([440, 250])
+var projection = d3.geoAlbersUsa().scale(1000).translate([440, 270])
 var path = d3.geoPath().projection(projection);
 var dates = [];
 var at_date;
