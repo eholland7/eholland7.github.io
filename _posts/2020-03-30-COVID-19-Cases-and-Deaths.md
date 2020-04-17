@@ -353,6 +353,7 @@ function ready(data) {
   at_date = datelist[datelist.length - 1]
   min_date = datelist[0];
   max_date = datelist[datelist.length - 1];
+  console.log(max_date);
 
   //slider to view the data as it happened
   var slider = d3.sliderBottom()
