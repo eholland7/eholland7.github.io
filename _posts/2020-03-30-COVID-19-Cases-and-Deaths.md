@@ -169,38 +169,39 @@ g.call(d3.axisLeft(x)
 
 //legend -- for cases
 var bubbles_legend = svg.selectAll(".bubbles-legend")
-    .data([2000, 5000, 10000])
+    .data([3000, 10000, 20000])
     .enter().append("circle")
     .attr("class", "bubbles-legend")
     .attr("r", function(d) {
-      return Math.sqrt(d) / (Math.PI/1.5);
+      return Math.sqrt(d) / (Math.PI / 1.2);
     })
     .attr("transform", "translate(800,450)")
-    .attr("cy", d => -(Math.sqrt(d) / (Math.PI/1.5)));
+    .attr("cy", d => -(Math.sqrt(d) / (Math.PI / 1.2)));
 
 svg.append("text")
       .attr("transform", "translate(800,420)")
       .attr("text-anchor", "middle")
       .style("font", "10px sans-serif")
       .attr("fill", "#900")
-      .text("2k");
+      .text("3k");
 svg.append("text")
-      .attr("transform", "translate(800,395)")
-      .attr("text-anchor", "middle")
-      .style("font", "10px sans-serif")
-      .attr("fill", "#900")
-      .text("5k");
-svg.append("text")
-      .attr("transform", "translate(800,365)")
+      .attr("transform", "translate(800,385)")
       .attr("text-anchor", "middle")
       .style("font", "10px sans-serif")
       .attr("fill", "#900")
       .text("10k");
 svg.append("text")
+      .attr("transform", "translate(800,353)")
+      .attr("text-anchor", "middle")
+      .style("font", "10px sans-serif")
+      .attr("fill", "#900")
+      .text("20k");
+svg.append("text")
       .attr("transform", "translate(800,465)")
       .attr("text-anchor", "middle")
       .style("font", "10px sans-serif")
       .text("Cases of COVID-19");
+
 
 // tooltip
 function strong(text) {
@@ -271,7 +272,7 @@ function checker(x) {
 }
 
 function rad(id) {
-  return ( (!show_bubbles) ? 0 : Math.sqrt(checker(covid_cases.get(at_date).get(id))) / (Math.PI / 1.5));
+  return ( (!show_bubbles) ? 0 : Math.sqrt(checker(covid_cases.get(at_date).get(id))) / (Math.PI / 1.2));
 }
 
 //button details
@@ -294,7 +295,7 @@ var promises = [
             , cases: +d.cases
             , deaths: +d.deaths};
   }),
-  d3.csv("../data/state_county_map.csv", function(d) {
+  d3.csv("https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv", function(d) {
     regionMap.set(+d.fips, d.state);
   })
 ]
