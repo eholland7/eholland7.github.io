@@ -1,6 +1,6 @@
 ---
 layout: post
-title: COVID-19 Cases Predicted Cases in New England
+title: COVID-19 Predicted Cases in New England
 subtitle: An investigation into the potential progression of COVID-19
 tags: [COVID-19,D3,JavaScipt]
 ---
@@ -9,9 +9,6 @@ tags: [COVID-19,D3,JavaScipt]
 - Use the slider below to display deaths and cases for a date beginning January 21st.
 - Toggle the buttons to display and hide the number of cases.
 - Move your cursor over the map to view more detail on the exact number of cases and deaths.<br/>
-
-
-Data was obtained from the NYT's github, linked [here](https://github.com/nytimes/covid-19-data).
 
 
 <meta charset="utf-8">
@@ -280,7 +277,7 @@ d3.selectAll("select")
 /*****************************************************************************/
 
   var promises = [
-    d3.json("./counties-10m.json"),
+    d3.json("../counties-10m.json"),
     // d3.csv("https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv", function(d) {
     d3.csv("../data/total_combined.csv", function(d) {
         return {date: d.date
@@ -291,7 +288,7 @@ d3.selectAll("select")
                 , rates: d.rate
                 , pop: +d.population};
     }),
-    d3.csv("./data/state_county_map.csv", function(d) {
+    d3.csv("../data/state_county_map.csv", function(d) {
       regionMap.set(+d.fips, d.state);
     })
   ]
