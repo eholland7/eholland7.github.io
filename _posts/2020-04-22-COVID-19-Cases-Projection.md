@@ -6,9 +6,10 @@ tags: [COVID-19,D3,JavaScipt]
 ---
 
 
-- Use the slider below to display deaths and cases for a date beginning January 21st.
+- Use the slider below to display cases for a date beginning April 18th, and for projected data from April 22nd onwards.
+- Select the infection rate/recovery rate combination to visualize from the dropdown button (rates are for 1000 people).
 - Toggle the buttons to display and hide the number of cases.
-- Move your cursor over the map to view more detail on the exact number of cases and deaths.<br/>
+- Move your cursor over the map to view more detail on the exact number of cases per county as well as the population.<br/>
 
 
 <meta charset="utf-8">
@@ -76,6 +77,11 @@ tags: [COVID-19,D3,JavaScipt]
 </style>
 
 <div class="col-md-6" id="chartarea">
+  <select>
+      <option id="o1">Infection rate: 0.001; Recovery rate: 0.06</option>
+      <option id="o2">Infection rate: 0.010; Recovery rate: 0.80</option>
+      <option id="o3">Infection rate: 0.003; Recovery rate: 0.08</option>
+  </select>
   <div class="btn-holder1">
     <div id="buttons">
         <button id="bubblesOn">Display Cases</button>
@@ -86,11 +92,6 @@ tags: [COVID-19,D3,JavaScipt]
        <button id="bubblesOff">Hide Cases</button>
    </div>
 </div>
-  <select>
-      <option id="o1">Infection rate: 0.001; Recovery rate: 0.06</option>
-      <option id="o2">Infection rate: 0.010; Recovery rate: 0.80</option>
-      <option id="o3">Infection rate: 0.003; Recovery rate: 0.08</option>
-  </select>
 </div>
 
 <script src="../lib/d3.v5.min.js"></script>
@@ -111,7 +112,7 @@ var regionMap = d3.map();
 var countyMap = d3.map();
 var parseTime = d3.timeParse("%Y-%m-%d");
 
-var projection = d3.geoAlbersUsa().scale(4000).translate([-875, 900])
+var projection = d3.geoAlbersUsa().scale(4000).translate([-900, 900])
 var path = d3.geoPath().projection(projection);
 var dates = [];
 var at_date;
@@ -173,29 +174,29 @@ var bubbles_legend = svg.selectAll(".bubbles-legend")
     .attr("r", function(d) {
       return Math.sqrt(d) / (Math.PI * 2);
     })
-    .attr("transform", "translate(700,550)")
+    .attr("transform", "translate(675,550)")
     .attr("cy", d => -(Math.sqrt(d) / (Math.PI * 2)));
 
 svg.append("text")
-      .attr("transform", "translate(700,516)")
+      .attr("transform", "translate(675,516)")
       .attr("text-anchor", "middle")
       .style("font", "10px sans-serif")
       .attr("fill", "#900")
       .text("20k");
 svg.append("text")
-      .attr("transform", "translate(700,490)")
+      .attr("transform", "translate(675,490)")
       .attr("text-anchor", "middle")
       .style("font", "10px sans-serif")
       .attr("fill", "#900")
       .text("50k");
 svg.append("text")
-      .attr("transform", "translate(700,460)")
+      .attr("transform", "translate(675,460)")
       .attr("text-anchor", "middle")
       .style("font", "10px sans-serif")
       .attr("fill", "#900")
       .text("100k");
 svg.append("text")
-      .attr("transform", "translate(700,563)")
+      .attr("transform", "translate(675,563)")
       .attr("text-anchor", "middle")
       .style("font", "10px sans-serif")
       .text("Cases of COVID-19");
@@ -380,7 +381,7 @@ function ready(data) {
 
   svg.append("g")
       .call(slider)
-      .attr("transform", "translate(220,20)");
+      .attr("transform", "translate(200,20)");
 
   init_graph();
   redraw();
