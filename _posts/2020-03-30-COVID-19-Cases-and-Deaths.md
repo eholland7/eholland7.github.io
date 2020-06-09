@@ -271,7 +271,7 @@ function checker(x) {
 }
 
 function rad(id) {
-  return ( (!show_bubbles) ? 0 : Math.sqrt(checker(covid_cases.get(at_date).get(id))) / (Math.PI / 1.2));
+  return ( (!show_bubbles) ? 0 : Math.sqrt(checker(covid_cases.get(at_date).get(id))) / (Math.PI / divisorint));
 }
 
 //button details
