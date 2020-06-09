@@ -124,7 +124,7 @@ var stats, counties, datelist, fipslist;
 
 //legend -- for deaths
 var x = d3.scaleLinear()
-    .domain([1, 400])
+    .domain([1, 425])
     .rangeRound([325, 775]);
 
 var rangeGreys = ["#ffffff","#f0f0f0","#eaeaea","#d9d9d9","#c5c5c5","#bdbdbd", "#a9a9a9"
@@ -132,7 +132,7 @@ var rangeGreys = ["#ffffff","#f0f0f0","#eaeaea","#d9d9d9","#c5c5c5","#bdbdbd", "
       ,"#252525","#000000"];
 
 var color = d3.scaleThreshold()
-    .domain(d3.range(0, 400, 25))
+    .domain(d3.range(0, 425, 25))
     .range(rangeGreys);
 
 var g = svg.append("g")
