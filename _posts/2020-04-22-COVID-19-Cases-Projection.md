@@ -1,14 +1,19 @@
 ---
 layout: post
 title: COVID-19 Predicted Cases in New England
-subtitle: An investigation into the potential progression of COVID-19
+subtitle: An investigation into the potential progression of COVID-19 (CX 4242 Final Project)
 tags: [COVID-19,D3,JavaScipt]
 ---
 
+To formulate our predictions on the spread of COVID-19, my group and I decided to use a modified gillespie algorithm with a susceptible-infected-recovered (SIR) model. The general idea of the algorithm is to predict stochastic events given a set of initial parameters. The parameters we used were: current infections, infection rate, and recovery rate. We cannot assume the rates are the same across all populations, so in order to address this, we considered different demographic inputs to influence the rates such as population size and population density.  To account for a growing presence of herd immunity as time goes on, we also chose to impose an infection cap by dividing the population in half. 
+
+The canvas on which the algorithm was run on was a NetworkX object. It is created for each county in a state, and it is populated with one node per 1000 of the county's population. A more accurate prediction would be for each individual node, but computation wise, it became way too complex. The nodes are randomly populated within a square grid commensurate to the population of the county. To add edges to the network, a method was applied to first measure the geographical distance of each node (since the node was given a zip code attribute, a simple haversine equation was applied). If the nodes were within 0.5 miles of each other, they were connected. Next, each node has a degree limit; if the number of degrees was greater than or equal to 2, the node could not have any more connections. Finally, to link any stragglers, nodes were randomly sampled and linked if their degree count was less than 1 until the number components of the total graph was 1. Similarly, to connect all the counties together, a random sampling of points was implemented connecting nodes together as long as they were not in the same county and were within another distance constraint. This was an attempt to try to simulate local travel between counties.
+
+The disease’s forecasted spread and progression is displayed below, where the red bubbles represent the number of cases on that day and the color of the county represents the population size. We chose to incorporate population data as it is critical for understanding why some counties explode with cases, whereas others either don’t experience a large change or any change at all in the number of new cases over time. The model displays the day by day change in cases in each state, starting from ten days before we begin our predictions, to the current date, and then extending a maximum of 5 days into the future if the number of cases has not dropped to zero by that time. The number of future cases is based upon our algorithm and the input data.
 
 - Use the slider below to display cases for a date beginning April 18th, and for projected data from April 22nd onwards.
-- Select the infection rate/recovery rate combination to visualize from the dropdown button (rates are for 1000 people).
-- Toggle the buttons to display and hide the number of cases.
+- Select the infection rate/recovery rate input combination to visualize from the dropdown button.
+- Toggle the buttons to display and hide the number of cases to more easily view population data.
 - Move your cursor over the map to view more detail on the exact number of cases per county as well as the population.<br/>
 
 
