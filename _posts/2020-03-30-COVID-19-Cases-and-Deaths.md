@@ -118,12 +118,13 @@ var dates = [];
 var at_date;
 var min_date;
 var max_date;
+var divisorint = 0.9;
 
 var stats, counties, datelist, fipslist;
 
 //legend -- for deaths
 var x = d3.scaleLinear()
-    .domain([1, 165])
+    .domain([1, 400])
     .rangeRound([325, 775]);
 
 var rangeGreys = ["#ffffff","#f0f0f0","#eaeaea","#d9d9d9","#c5c5c5","#bdbdbd", "#a9a9a9"
@@ -131,7 +132,7 @@ var rangeGreys = ["#ffffff","#f0f0f0","#eaeaea","#d9d9d9","#c5c5c5","#bdbdbd", "
       ,"#252525","#000000"];
 
 var color = d3.scaleThreshold()
-    .domain(d3.range(0, 165, 10))
+    .domain(d3.range(0, 400, 25))
     .range(rangeGreys);
 
 var g = svg.append("g")
@@ -169,45 +170,43 @@ g.call(d3.axisLeft(x)
 
 //legend -- for cases
 var bubbles_legend = svg.selectAll(".bubbles-legend")
-    .data([3000, 10000, 20000])
+    .data([10000, 30000, 50000])
     .enter().append("circle")
     .attr("class", "bubbles-legend")
     .attr("r", function(d) {
-      return Math.sqrt(d) / (Math.PI / 1.2);
+      return Math.sqrt(d) / (Math.PI / divisorint);
     })
-    .attr("transform", "translate(800,450)")
-    .attr("cy", d => -(Math.sqrt(d) / (Math.PI / 1.2)));
+    .attr("transform", "translate(800,470)")
+    .attr("cy", d => -(Math.sqrt(d) / (Math.PI / divisorint)));
 
 svg.append("text")
-      .attr("transform", "translate(800,420)")
-      .attr("text-anchor", "middle")
-      .style("font", "10px sans-serif")
-      .attr("fill", "#900")
-      .text("3k");
-svg.append("text")
-      .attr("transform", "translate(800,385)")
+      .attr("transform", "translate(800,425)")
       .attr("text-anchor", "middle")
       .style("font", "10px sans-serif")
       .attr("fill", "#900")
       .text("10k");
 svg.append("text")
+      .attr("transform", "translate(800,383)")
+      .attr("text-anchor", "middle")
+      .style("font", "10px sans-serif")
+      .attr("fill", "#900")
+      .text("30k");
+svg.append("text")
       .attr("transform", "translate(800,353)")
       .attr("text-anchor", "middle")
       .style("font", "10px sans-serif")
       .attr("fill", "#900")
-      .text("20k");
+      .text("50k");
 svg.append("text")
-      .attr("transform", "translate(800,465)")
+      .attr("transform", "translate(800,485)")
       .attr("text-anchor", "middle")
       .style("font", "10px sans-serif")
       .text("Cases of COVID-19");
-
 
 // tooltip
 function strong(text) {
     return "<strong>" + text + "</strong>"
 }
-
 
 var tip = d3.tip()
     .attr("class", "tip")
