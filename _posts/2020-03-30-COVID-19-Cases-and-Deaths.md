@@ -286,7 +286,7 @@ d3.selectAll("button")
 /*****************************************************************************/
 
 var promises = [
-  d3.json("./counties-10m.json"),
+  d3.json("../counties-10m.json"),
   d3.csv("https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv", function(d) {
       return {date: d.date
             , county:d.county
@@ -295,7 +295,7 @@ var promises = [
             , cases: +d.cases
             , deaths: +d.deaths};
   }),
-  d3.csv("./data/state_county_map.csv", function(d) {
+  d3.csv("../data/state_county_map.csv", function(d) {
     regionMap.set(+d.fips, d.state);
   })
 ]
