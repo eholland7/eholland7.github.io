@@ -118,7 +118,7 @@ var dates = [];
 var at_date;
 var min_date;
 var max_date;
-var divisorint = 0.9;
+var divisorint = 0.6;
 
 var stats, counties, datelist, fipslist;
 
@@ -170,7 +170,7 @@ g.call(d3.axisLeft(x)
 
 //legend -- for cases
 var bubbles_legend = svg.selectAll(".bubbles-legend")
-    .data([10000, 30000, 50000])
+    .data([20000, 50000, 100000])
     .enter().append("circle")
     .attr("class", "bubbles-legend")
     .attr("r", function(d) {
@@ -180,19 +180,19 @@ var bubbles_legend = svg.selectAll(".bubbles-legend")
     .attr("cy", d => -(Math.sqrt(d) / (Math.PI / divisorint)));
 
 svg.append("text")
-      .attr("transform", "translate(800,425)")
+      .attr("transform", "translate(800,427)")
       .attr("text-anchor", "middle")
       .style("font", "10px sans-serif")
       .attr("fill", "#900")
       .text("10k");
 svg.append("text")
-      .attr("transform", "translate(800,383)")
+      .attr("transform", "translate(800,395)")
       .attr("text-anchor", "middle")
       .style("font", "10px sans-serif")
       .attr("fill", "#900")
       .text("30k");
 svg.append("text")
-      .attr("transform", "translate(800,353)")
+      .attr("transform", "translate(800,360)")
       .attr("text-anchor", "middle")
       .style("font", "10px sans-serif")
       .attr("fill", "#900")
@@ -207,6 +207,7 @@ svg.append("text")
 function strong(text) {
     return "<strong>" + text + "</strong>"
 }
+
 
 var tip = d3.tip()
     .attr("class", "tip")
@@ -285,7 +286,7 @@ d3.selectAll("button")
 /*****************************************************************************/
 
 var promises = [
-  d3.json("../counties-10m.json"),
+  d3.json("./counties-10m.json"),
   d3.csv("https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv", function(d) {
       return {date: d.date
             , county:d.county
@@ -294,7 +295,7 @@ var promises = [
             , cases: +d.cases
             , deaths: +d.deaths};
   }),
-  d3.csv("../data/state_county_map.csv", function(d) {
+  d3.csv("./data/state_county_map.csv", function(d) {
     regionMap.set(+d.fips, d.state);
   })
 ]
@@ -312,7 +313,7 @@ function ready(data) {
       regionMap.set(d['fips'], d['state']);
       countyMap.set(d['fips'], d['county']);
   });
-  
+
   stats.forEach(function(item) {
     if (item['fips'] === "") {
       //its a random City
@@ -320,7 +321,6 @@ function ready(data) {
         //36047: KINGS COUNTY, FOR NYC
         item['fips'] = "36047";
       } else if (item['county'] === "Kansas City") {
-        console.log("HERE");
         //29047: CLAY COUNTY, MO, FOR KANSAS CITY
         item['fips'] = "29047";
       }
@@ -349,12 +349,12 @@ function ready(data) {
       covid_cases.get(r['date']).set( r['fips'], r['cases']);
       covid_deaths.get(r['date']).set(r['fips'], r['deaths']);
   }
-  at_date = datelist[datelist.length - 1]
+  at_date = datelist[datelist.length - 1];
   min_date = datelist[0];
   max_date = datelist[datelist.length - 1];
-  console.log(max_date);
 
   //slider to view the data as it happened
+  var dispatch = d3.dispatch("input", "statechange");
   var slider = d3.sliderBottom()
       .min(parseTime(min_date))
       .max(parseTime(max_date))
@@ -376,16 +376,20 @@ function ready(data) {
   svg.append("g")
       .call(slider)
       .attr("transform", "translate(220,8)");//"translate(770,160)");
-      
+
   init_graph();
   redraw();
 }
+
 
 function init_graph() {
   svg.append("g")
       .attr("class", "counties")
     .selectAll("path")
-    .data(topojson.feature(us, us.objects.counties).features)
+    .data(topojson.feature(us, us.objects.counties).features.filter(function(d) {
+      //23 = maine 50 = vermont
+      return !d.id.startsWith("72");
+    }))
     .enter().append("path")
       .attr("fill", function(d) { return color(0); })
       .attr("d", path)
@@ -398,7 +402,10 @@ function init_graph() {
       .attr("d", path);
 
   var bubbies = svg.selectAll(".bubbles")
-      .data(topojson.feature(us, us.objects.counties).features)
+      .data(topojson.feature(us, us.objects.counties).features.filter(function(d) {
+        //23 = maine 50 = vermont
+        return !d.id.startsWith("72");
+      }))
       .enter().append("circle")
       .attr("class", "bubbles")
       .attr("r", function(d) { return 0; })
